@@ -33,8 +33,9 @@
     <li><a href="https://www.google.com">LINK TO SOCIAL MEDIA</a></li>
   </ul>
 
-  <p class="sign_in">Admin Login</p>
-
+  <% unless user_signed_in? %>
+    <p class="sign_in">Admin Login</p>
+  <% end %>
 </div>
 
 <div id="main_content">
@@ -46,10 +47,13 @@
     <% else %>
       <%= link_to "Back to All Posts", root_path %>
     <% end %>
-    <div class="buttons">
-      <button class="button"><%= link_to "New Post", new_post_path %></button>
-      <button class="button"><%= link_to "Log Out" %></button>
-    </div>
+
+    <% if user_signed_in? %>
+      <div class="buttons">
+        <button class="button"><%= link_to "New Post", new_post_path %></button>
+        <button class="button"><%= link_to "Log Out" %></button>
+      </div>
+    <% end %>
 
     <% flash.each do |name, msg| %>
       <%= content_tag(:div, msg, class: "alert") %>

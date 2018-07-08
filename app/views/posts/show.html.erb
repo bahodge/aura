@@ -7,10 +7,16 @@
 
   <p class="date">
     Submitted: <%= time_ago_in_words(@post.created_at) %> Ago
-    |
-    <button class="button"><%= link_to 'Edit', edit_post_path(@post) %></button>
-    |
-    <button class="button"><%= link_to 'Delete', post_path(@post), method: :delete, data: {confirm: "Are you sure?"} %></button>
+    <% if user_signed_in? %>
+      |
+      <button class="button">
+        <%= link_to 'Edit', edit_post_path(@post) %>
+      </button>
+      |
+      <button class="button">
+        <%= link_to 'Delete', post_path(@post), method: :delete, data: {confirm: "Are you sure?"} %>
+      </button>
+    <% end %>
   </p>
 
   <p class="body">
@@ -25,8 +31,6 @@
     <h3>Add a comment:</h3>
     <%= render "comments/form" %>
   </div>
-
-
 
 
 </div>

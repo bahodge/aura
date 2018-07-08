@@ -1,14 +1,58 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>AuraApp</title>
-    <%= csrf_meta_tags %>
+<head>
+  <!--  <title>Aura</title>-->
+  <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag 'application', "https://fonts.googleapis.com/css?family=Raleway:400,700" => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body>
+
+<div id="sidebar">
+  <div id="logo">
+    <%= link_to root_path do %>
+      <%= image_tag "logo.svg" %>
+    <% end %>
+  </div>
+
+  <ul>
+    <li class="category">Website</li>
+    <li><%= link_to "Home", root_path %></li>
+    <li>About</li>
+  </ul>
+
+
+  <ul>
+    <li class="category">SOCIAL MEDIA</li>
+    <li><a href="https://www.google.com">LINK TO SOCIAL MEDIA</a></li>
+    <li><a href="https://www.google.com">LINK TO SOCIAL MEDIA</a></li>
+    <li><a href="https://www.google.com">LINK TO SOCIAL MEDIA</a></li>
+    <li><a href="https://www.google.com">LINK TO SOCIAL MEDIA</a></li>
+  </ul>
+
+  <p class="sign_in">Admin Login</p>
+
+</div>
+
+<div id="main_content">
+  <div id="header">
+    <p>All Posts</p>
+    <div class="buttons">
+      <button class="button"><%= link_to "New Post", new_post_path %></button>
+      <button class="button"><%= link_to "Log Out" %></button>
+    </div>
+
+    <% flash.each do |name, msg| %>
+      <%= content_tag(:div, msg, class: "alert") %>
+    <% end %>
+
+  </div>
+  <%= yield %>
+</div>
+
+
+</body>
 </html>
